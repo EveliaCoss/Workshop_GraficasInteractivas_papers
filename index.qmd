@@ -1,3 +1,5 @@
+![](figrues/LIIGHUNAM_logo.jpg){width="203"}
+
 # Gráficas Interactivas y Figuras para Publicaciones Científicas {.unnumbered}
 
 ## Información general

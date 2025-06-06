@@ -3,7 +3,7 @@
     "path": "~/Documents/Respaldos/Github_notes/Workshop_GraficasInteractivas_papers/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "2002833683",
+    "hash": "2498431327",
     "contents": "",
     "dirty": false,
     "created": 1748998853961.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "11,20",
+        "cursorPosition": "23,31",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1749195427,
+    "lastKnownWriteTime": 1749195741,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1749195427390,
+    "last_content_update": 1749195741687,
     "read_only": false,
     "read_only_alternatives": []
 }

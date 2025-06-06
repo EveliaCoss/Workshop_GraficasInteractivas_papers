@@ -22,7 +22,6 @@ book:
       - tema2.qmd
       - Cap5_QuartoJournals.qmd
       - Cap6_Completefigure.qmd
-      - summary.qmd
   # Information
   repo-url: https://github.com/EveliaCoss/Workshop_GraficasInteractivas_papers # link de Github
   sharing: [twitter, facebook, linkedin]

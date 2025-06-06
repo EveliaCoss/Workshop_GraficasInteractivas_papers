@@ -236,12 +236,5 @@
     "title": "9  Creación de Figuras completas paso a paso",
     "section": "9.5 Referencias",
     "text": "9.5 Referencias\n\nEjemplo 1: usando patchwork y gapminder\nEjemplo 2: usando patchwork, gridExtra y gapminder\nEjemplo 3: Pajaritos\nEjemplo 4: Unir informacion de una figura"
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "10  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n\nCode\n1 + 1\n\n\n[1] 2"
   }
 ]
