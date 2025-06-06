@@ -1,25 +1,41 @@
 project:
   type: book
+  output-dir: docs
 
 book:
-  title: "Workshop_GraficasInteractivas_papers"
-  author: "Norah Jones"
-  date: "6/3/2025"
+  title: "Workshop de Graficas Interactivas y articulos"
+  author: "Evelia Coss"
+  date: "7/5/2025"
+  page-navigation: true
   chapters:
     - index.qmd
     - intro.qmd
+  - part: "**Sección 1** - Bienvenida e Introducción"
+    chapters:
     - Cap1_Datos.qmd
     - Cap2_Mapas.qmd
     - summary.qmd
     - references.qmd
+  # Information
+  site-url: https://cabana.network/ # 📍URL del sitio completo CABANANet
+  repo-url: https://github.com/EveliaCoss/CABANAnet_TrainTrainers2025 # link de Github
+  sharing: [twitter, facebook, linkedin]
+  favicon: "figures/cabananet_logo.png" # icono de la pagina en pestana
 
 bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    logo: "figures/LIIGHUNAM_logo.png"
+    toc-depth: 4
+    number-depth: 3
+  # Boton para cambiar tema de oscuro a claro
+    theme:
+      light: cosmo
+      dark: darkly
+    code-fold: show # Ocultar codigo
+    code-copy: true # Copy button
+    freeze: false  # Desactivar congelamiento
 
 editor: visual
 

@@ -1,0 +1,2 @@
+[2,"\n"]
+[1,"ERROR: YAMLException: bad indentation of a mapping entry (C:\\Users\\ecoss\\Documents\\Respaldos\\Github_notes\\Workshop_GraficasInteractivas_papers\\_quarto.yml, 13:3)\n12:     - intro.qmd\n13:   - part: \"**Sección 1** - Bienvenida e Introducción\"\n     ~~\n14:     chapters:\n"]
