@@ -61,12 +61,14 @@ Obtener un resumen descriptivo de la esperanza de vida media en los países sele
 
 ```{r general_table}
 JAGUAR_gapminder %>%
-  select(-continent, -id) %>% 
+  select(-continent, -id, -year) %>% 
+  # Estadistica descriptiva en la tabla
   tbl_summary(
     by = country, 
     statistic = list(all_continuous() ~ "{mean} ({sd})", 
                      all_categorical() ~ "{n} / {N} ({p}%)"),
     digits = all_continuous() ~ 2) %>% 
+  # Nombre del titulo de la tabla
   modify_caption("Caracteristicas de los paises (N = {N})") %>%
   as_gt()
 ```

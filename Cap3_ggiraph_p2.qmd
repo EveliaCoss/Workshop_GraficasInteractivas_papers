@@ -15,7 +15,9 @@ library(ggiraph)
 load("data/JAGUAR_gapminder.RData")
 ```
 
-Paleta de colores
+### Paleta de colores
+
+Si te gustaria colocar mas colores de tu elección puedes emplear [COLOR HEX](https://colorbrewer2.org/#type=sequential&scheme=YlGn&n=9).
 
 ```{r}
 paises_pal  <- c("#3392d0", "#9e3995", "#0552a1","#de20a0", "#047e60", "#ea2f34", "#f8bf23")

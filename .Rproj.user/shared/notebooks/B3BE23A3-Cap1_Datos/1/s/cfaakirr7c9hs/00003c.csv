@@ -1,3 +1,0 @@
-"0","# Visualizar informacion en una tabla bonita"
-"0","JAGUAR_gapminder %>%"
-"0","  DT::datatable()"

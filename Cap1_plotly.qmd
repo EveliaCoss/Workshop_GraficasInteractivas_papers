@@ -5,7 +5,7 @@ Vamos a crear un gráfico de burbujas interactivo con el paquete **plotly**, usa
 -   `gdpPercap` -El PIB per cápita (eje X)
 -   `lifeExp` -La esperanza de vida (eje Y)
 -   `pop` - El tamaño de la población (tamaño del punto)
--   `country`  - El continente (color)
+-   `country` - El continente (color)
 
 Cargar paquetes en R
 
@@ -74,9 +74,9 @@ plot2_df <- data %>%
   mutate(gdpPercap = round(gdpPercap,0)) %>% # Eliminar decimales
   mutate(pop = round(pop/1000000,2)) %>% # Dejar en milones con dos decimas
   mutate(lifeExp = round(lifeExp,1)) %>% # dejar a una decimal
-  # Eeordenar esferas por pop
+  # Reordenar esferas por pop
   arrange(desc(pop)) %>%
-  mutate(country = factor(country, country)) %>%
+  mutate(country = as.factor(country)) %>%
   # Preparar etiquetas (tooltip)
   mutate(text = paste("Pais: ", country, "\nPoblación (M): ", 
                       pop, "\nEsperanza de vida: ", lifeExp, "\nGdp per capita: ", gdpPercap, sep="")) 
@@ -109,7 +109,7 @@ saveWidget(plot2_interactive, file= "graphs/ggplotlyBubblechart.html")
 ```
 
 ::: {.callout-important icon="false"}
-### En resumen 
+### En resumen
 
 -   Un widget es cualquier elemento interactivo en una aplicación o presentación.
 -   Los gráficos interactivos con Plotly son widgets.

@@ -17,7 +17,7 @@ book:
       - Cap2_ggiraph_p1.qmd
       - Cap3_ggiraph_p2.qmd
       - Cap4_ggiraph_examples.qmd
-    - part: "Gráficas interactivas"
+    - part: "Ejemplos de articulos"
       chapters:
       - tema2.qmd
       - Cap5_QuartoJournals.qmd
