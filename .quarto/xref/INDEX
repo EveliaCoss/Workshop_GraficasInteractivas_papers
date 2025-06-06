@@ -19,5 +19,35 @@
   },
   "Cap2_Mapas.qmd": {
     "Cap2_Mapas.html": "aa5a65ba"
+  },
+  "intro2.qmd": {
+    "intro2.html": "f53f9268"
+  },
+  "tema1.qmd": {
+    "tema1.html": "7ce5188a"
+  },
+  "tema2.qmd": {
+    "tema2.html": "1a2c56ca"
+  },
+  "Cap1_plotly.qmd": {
+    "Cap1_plotly.html": "aafd7522"
+  },
+  "Cap2_ggiraph_p1.qmd": {
+    "Cap2_ggiraph_p1.html": "990ad246"
+  },
+  "Cap3_ggiraph_p2.qmd": {
+    "Cap3_ggiraph_p2.html": "e212d329"
+  },
+  "Cap4_ggiraph_examples.qmd": {
+    "Cap4_ggiraph_examples.html": "fb215e0d"
+  },
+  "Cap5_QuartoJournals.qmd": {
+    "Cap5_QuartoJournals.html": "d01fcea9"
+  },
+  "Cap6_Completefigure.qmd": {
+    "Cap6_Completefigure.html": "29eed193"
+  },
+  "salvavidas.qmd": {
+    "salvavidas.html": "5c19cf4f"
   }
 }

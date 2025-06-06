@@ -1,0 +1,18 @@
+# Escritura de articulos en Quarto
+
+**Quarto** es una herramienta poderosa y flexible que te permite crear documentos reproducibles combinando texto, código y resultados en un solo archivo. Es ideal para escribir artículos, reportes técnicos o notebooks de análisis de datos.
+
+## 🚀 ¿Por qué usar Quarto para tus artículos?
+
+-    Integra código R, Python y otros lenguajes directamente en el documento.
+-   Produce documentos en múltiples formatos: HTML, PDF, Word, e incluso presentaciones.
+-   Permite automatizar la generación de resultados y figuras, manteniendo todo actualizado.
+-   Es ideal para fomentar la **reproducibilidad científica**.
+
+## 📚 Recursos para aprender más
+
+-   Curso oficial gratuito por parte de Quarto, [Journal Articles](https://quarto.org/docs/journals/)
+
+-   Introduction to Reproducible Publications with Quarto,[Carpentries](https://carpentries-incubator.github.io/reproducible-publications-quarto/index.html)
+
+-   Manual completo de Quarto, [libro](https://r4ds.hadley.nz/quarto.html)

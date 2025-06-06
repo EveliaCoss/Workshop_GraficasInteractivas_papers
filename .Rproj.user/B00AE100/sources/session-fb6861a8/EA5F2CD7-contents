@@ -1,8 +1,17 @@
-```{r}
-library(ggplot2)
-library(ggiraph)
-library(patchwork)
+# Otros ejemplos con `ggiraph`
 
+Cargar paquetes en R
+
+```{r packages, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggiraph) # install.packages('ggiraph')
+library(patchwork) # install.packages('patchwork')
+library(sf) # install.packages('sf')
+```
+
+## Ejemplo 1
+
+```{r}
 # Example data - replace with your data
 map_data <- data.frame(
   id = 1:3,
@@ -47,6 +56,125 @@ combined_plot <- girafe(
 combined_plot
 ```
 
+## Ejemplo 2
+
+```{r}
+# Read the full world map
+world_sf <- read_sf("https://raw.githubusercontent.com/holtzy/R-graph-gallery/master/DATA/world.geojson")
+world_sf <- world_sf %>%
+  filter(!name %in% c("Antarctica", "Greenland"))
+
+# Create a sample dataset
+happiness_data <- data.frame(
+  Country = c(
+    "France", "Germany", "United Kingdom",
+    "Japan", "China", "Vietnam",
+    "United States of America", "Canada", "Mexico"
+  ),
+  Continent = c(
+    "Europe", "Europe", "Europe",
+    "Asia", "Asia", "Asia",
+    "North America", "North America", "North America"
+  ),
+  Happiness_Score = rnorm(mean = 30, sd = 20, n = 9),
+  GDP_per_capita = rnorm(mean = 30, sd = 20, n = 9),
+  Social_support = rnorm(mean = 30, sd = 20, n = 9),
+  Healthy_life_expectancy = rnorm(mean = 30, sd = 20, n = 9)
+)
+
+# Join the happiness data with the full world map
+world_sf <- world_sf %>%
+  left_join(happiness_data, by = c("name" = "Country"))
+
+# Create the first chart (Scatter plot)
+p1 <- ggplot(world_sf, aes(
+  GDP_per_capita,
+  Happiness_Score,
+  tooltip = name,
+  data_id = Continent,
+  color = Continent
+)) +
+  geom_point_interactive(data = filter(world_sf, !is.na(Happiness_Score)), size = 4) +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    legend.position = "none"
+  )
+
+# Create the second chart (Bar plot)
+p2 <- ggplot(world_sf, aes(
+  x = reorder(name, Happiness_Score),
+  y = Happiness_Score,
+  tooltip = name,
+  data_id = Continent,
+  fill = Continent
+)) +
+  geom_col_interactive(data = filter(world_sf, !is.na(Happiness_Score))) +
+  coord_flip() +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    legend.position = "none"
+  )
+
+# Create the third chart (choropleth)
+# Create the third chart (choropleth)
+p3 <- ggplot() +
+  geom_sf(data = world_sf, fill = "lightgrey", color = "lightgrey") +
+  geom_sf_interactive(
+    data = filter(world_sf, !is.na(Happiness_Score)),
+    aes(fill = Continent, tooltip = name, data_id = Continent)
+  ) +
+  coord_sf(crs = st_crs(3857)) +
+  theme_void() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    legend.position = "none"
+  )
+
+# Combine the plots
+combined_plot <- (p1 + p2) / p3 + plot_layout(heights = c(1, 2))
+
+# Create CSS
+tooltip_css <- "
+  border-radius: 12px;
+  color: #333;
+  background-color: white;
+  padding: 10px;
+  font-size: 14px;
+  transition: all 0.5s ease-out;
+"
+
+hover_css <- "
+  filter: brightness(75%);
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+  filter: brightness(1.15);
+"
+
+# Add interactivity
+interactive_plot <- interactive_plot %>%
+  girafe_options(
+    opts_hover(css = hover_css),
+    opts_tooltip(css = tooltip_css),
+    opts_hover_inv(css = "opacity:0.3; transition: all 0.2s ease-out;")
+  )
+interactive_plot
+```
+
+::: callout-note
+## Otras graficas
+
+De igual manera existen otros paquetes interactivos que puedes visitar y emplear:
+
+[Chapter 13 Interactive Graphs](https://rkabacoff.github.io/datavis/Interactive.html)
+:::
+
 ## Referencias
 
--   Productive workflow - [ggiraph](https://www.productive-r-workflow.com/quarto-tricks#ggiraph)
+-   Ejemplo1: Productive workflow - [ggiraph](https://www.productive-r-workflow.com/quarto-tricks#ggiraph)
+-   Ejemplo2: [Graficas ggiraph y CSS](https://r-graph-gallery.com/scatterplot.html)
+-   [Chapter 13 Interactive Graphs](https://rkabacoff.github.io/datavis/Interactive.html)

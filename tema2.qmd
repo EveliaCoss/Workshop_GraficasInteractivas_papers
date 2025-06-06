@@ -1,0 +1,31 @@
+# Figuras para Publicaciones Científicas
+
+El paquete `ggpubr` R facilita la creación de bellos gráficos basados en `ggplot2` a investigadores sin conocimientos avanzados de programación, se encuentra integrado en el paquete `tidyverse`.
+
+Características principales de ggpubr:
+
+-   Envuelve el paquete ggplot2 con una sintaxis menos opaca para principiantes en programación R.
+-   Ayuda a los investigadores, sin conocimientos avanzados de programación en R, a crear fácilmente gráficos listos para su publicación.
+-   Permite añadir automáticamente valores p y niveles de significación a gráficos de cajas, barras y líneas, entre otros.
+-   Facilita la organización y anotación de múltiples gráficos en la misma página.
+-   Facilita el cambio de parámetros gráficos como colores y etiquetas.
+
+```{r packages, message=FALSE, warning=FALSE}
+library("ggpubr")
+```
+
+Si alguna vez quisiste agregar los pvalues en tus graficas, puedes hacerlo con `ggpubr`, vamos a revisar la [guia completa](https://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/).
+
+[![](figrues/ggpubr_example1.png)](https://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/)
+
+## 🎨 Recomendaciones para crear figuras completas en R
+
+Para combinar múltiples gráficos en una sola figura o panel, podemos utilizar paquetes como [`cowplot`](https://cran-r--project-org.translate.goog/web/packages/cowplot/vignettes/introduction.html?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc) y [`patchwork`](https://patchwork.data-imaginist.com). Estas herramientas son muy útiles para organizar visualizaciones de forma clara y profesional, como en el ejemplo que te mostré anteriormente.
+
+Además, es fundamental seguir practicando y formándote continuamente. Por ello, **recomiendo tomar cursos especializados en visualización de datos con R**, ya que te permitirán mejorar tus habilidades y aprender buenas prácticas.
+
+Uno de los cursos que recomiendo es:
+
+-   Publication Perfect, [Github](https://github.com/hbctraining/publication_perfect), [pagina web](https://hbctraining.github.io/publication_perfect/), [Ejemplo de figura completa](https://hbctraining.github.io/publication_perfect/lessons/09_final_figure.html)
+-   Creating Publication Quality Graphics in R, [Libro](https://ilias.uni-marburg.de/data/UNIMR/lm_data/lm_2092231/index.html), [Ejemplo de figura completa](https://ilias.uni-marburg.de/data/UNIMR/lm_data/lm_2092231/multiple-plots-per-page.html)
+-   Creating publication quality graphs in R, [ejemplos](https://rpubs.com/drsong/9575)

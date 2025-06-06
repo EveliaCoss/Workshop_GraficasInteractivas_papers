@@ -1,0 +1,247 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Workshop de Graficas Interactivas y articulos",
+    "section": "",
+    "text": "Gráficas Interactivas y Figuras para Publicaciones Científicas"
+  },
+  {
+    "objectID": "index.html#información-general",
+    "href": "index.html#información-general",
+    "title": "Workshop de Graficas Interactivas y articulos",
+    "section": "Información general",
+    "text": "Información general\nEn esta clase exploraremos herramientas y buenas prácticas para la creación de gráficas interactivas y figuras de alta calidad destinadas a artículos científicos.\nFecha: 7 de Junio, 2025\n\nInstructora:\n\nEvelia Lorena Coss-Navarrete - PostDoc, LIIGH-UNAM.\n\nAprenderemos a utilizar librerías de R como ggplot2, plotly y ggiraph para generar visualizaciones claras, reproducibles y estéticamente adecuadas para publicaciones. También abordaremos cómo adaptar las figuras a distintos formatos de revistas científicas y cómo exportarlas en alta resolución.\n📦 Instrucciones para instalar y cargar los paquetes en R usando pacman\n\n\nCode\n# Paso 1: Instalar pacman (si no lo tienes aún)\nif (!require(\"pacman\")) install.packages(\"pacman\")\n\n# Paso 2: Instalar y cargar todos los paquetes necesarios\npacman::p_load(\n  gapminder, plotly, tidyverse, DT, gtsummary,\n  rnaturalearth, rnaturalearthdata, patchwork,\n  sf, ggiraph, cowplot, viridis, hrbrthemes\n)"
+  },
+  {
+    "objectID": "index.html#citar-y-reutilizar-el-material-del-curso",
+    "href": "index.html#citar-y-reutilizar-el-material-del-curso",
+    "title": "Workshop de Graficas Interactivas y articulos",
+    "section": "Citar y reutilizar el material del curso",
+    "text": "Citar y reutilizar el material del curso\nLos datos del curso se pueden reutilizar y adaptar libremente con la debida atribución. Todos los datos de los cursos de estos repositorios están sujetos a la licencia Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)."
+  },
+  {
+    "objectID": "salvavidas.html",
+    "href": "salvavidas.html",
+    "title": "1  Oportunidad especial para obtener el diploma",
+    "section": "",
+    "text": "Edición 2025, Parte 3 🌱\nQueremos que este curso no solo sea una experiencia de aprendizaje, sino también una oportunidad para crecer, compartir y apoyar a quienes enfrentaron retos para asistir a todas las sesiones. Por eso, por única ocasión, ofrecemos una vía alternativa para obtener el diploma: realizar un proyecto final y presentarlo en video.\nEsta opción es voluntaria y pensada con cariño, como un puente para quienes han estado comprometidos con el curso pero no pudieron estar presentes en todo momento. Además, tu proyecto puede convertirse en una herramienta valiosa para otras personas que deseen aprender, así que te invitamos a hacerlo con dedicación y corazón 💛\nComo toda oportunidad especial, esta opción tiene algunos requisitos importantes que deberás seguir. A continuación, te compartimos las instrucciones:\n\n\n\n\n\n\nTrabajo individual\n\n\n\nInstrucciones:\n\nSeleccionar uno de los Datasets precargados en R o los que son propios de los paquetes.\nAnaliza los datos y genera 3 preguntas que puedas contestar con las variables que tienes.\nGenera un script completo que nos conteste las preguntas realizadas y nos de gráficas de cada uno.\nNOTA: No olvides agregar la programación defensiva y un poco de todo lo visto en clase (Manipulación de datos, funciones, BUENAS PRÁCTICAS, ggplot2 o Complexheatmap).\nNOTA: No olvides que es muy importante documentar todo.\nEntregables:\n\nCrear un reporte o un libro en Rmarkdown o Quarto.\nGraba tu explicación en un video de 15 min máximo empleando Xaringan, Rmarkdown o Quarto en R (práctica el tiempo para que sea de provecho).\nSube todo a Github, el repositorio debe ser público y debe contener tu reporte, presentación y video. NO olvides poner tu nombre en el README.\n\nEntrega: 18 de junio 2025, 11 pm hora Ciudad de México"
+  },
+  {
+    "objectID": "tema1.html#desglose-de-las-capas-comunes",
+    "href": "tema1.html#desglose-de-las-capas-comunes",
+    "title": "2  ggplot2",
+    "section": "2.1 Desglose de las capas comunes",
+    "text": "2.1 Desglose de las capas comunes\nA continuación se presenta un desglose de cada una de las capas de la GG y los argumentos comunes de cada una de ellas que pueden servir de referencia:\n\nDatos:\n\nsus datos, en formato tidy o dataframe, proporcionarán los ingredientes para su trazado\nutilice las técnicas dplyr para preparar los datos para un formato de trazado óptimo\npor lo general, esto significa que debe tener una fila por cada observación que desea trazar\n\nEstética (Aesthetics / aes), para hacer visibles los datos\n\nx, y: variable a lo largo de los ejes x e y.\ncolour: color de las variables según los datos.\nfill: color interior de la zona o relleno.\ngroup: a qué grupo pertenece una geom.\nshape: la figura utilizada para trazar un punto.\nlinetype: tipo de línea utilizada (sólida, discontinua, etc.).\nsize: escala de tamaño para una dimensión extra\nalpha: transparencia del objeto geométrico\n\nObjetos geométricos (geoms - determina el tipo de trazado)\n\ngeom_point(): gráfico de dispersión\ngeom_line(): líneas que conectan puntos aumentando el valor de x\ngeom_path(): líneas que conectan puntos en secuencia de aparición\ngeom_boxplot(): gráfico de caja y bigotes para variables categóricas\ngeom_bar(): gráficos de barras para el eje x categórico\ngeom_histogram(): histograma para eje x continuo\ngeom_violin(): núcleo de distribución de la dispersión de datos\ngeom_smooth(): línea de función basada en datos\n\nFacetas:\n\nfacet_wrap() o facet_grid() para múltiplos pequeños\n\nEstadísticas:\n\nsimilar a geoms, pero computada\nmuestran medias, recuentos y otros resúmenes estadísticos de los datos\n\nCoordenadas - ajuste de datos en una página\n\ncoord_cartesian para establecer límites\ncoord_polar para gráficos circulares\ncoord_map para diferentes proyecciones cartográficas\n\nTemas:\n\nparámetros visuales generales\nfuentes, colores, formas, contornos"
+  },
+  {
+    "objectID": "tema1.html#cheatsheet",
+    "href": "tema1.html#cheatsheet",
+    "title": "2  ggplot2",
+    "section": "2.2 Cheatsheet",
+    "text": "2.2 Cheatsheet\n\nMás información en en el Workshop 3: Introduction to data visualisation with ggplot2"
+  },
+  {
+    "objectID": "tema1.html#ejercicios",
+    "href": "tema1.html#ejercicios",
+    "title": "2  ggplot2",
+    "section": "2.3 Ejercicios",
+    "text": "2.3 Ejercicios\nTe invitamos a que corras el ejercicio propuesto en el script ggplo2_R_Ladies_Morelia_.R por Fernanda Miron."
+  },
+  {
+    "objectID": "Cap1_plotly.html#selección-de-datos",
+    "href": "Cap1_plotly.html#selección-de-datos",
+    "title": "3  Empleo de plotly",
+    "section": "3.1 Selección de datos",
+    "text": "3.1 Selección de datos\nEn este ejemplo vamos a visualizar la esperanza de vida (lifeExp), la población total del país (pop) y el producto interno bruto per cápita (gdpPercap) por cada pais, empleando la información general del conjunto de datos gapminder proveniente del paquete gapminder en R.\n\n\nCode\ndata &lt;- gapminder %&gt;% \n  filter(year==\"2007\") %&gt;% # seleccionar solo 2007 \n  dplyr::select(-year) # Eliminar la columna de year\n\n\n\n3.1.1 ¿Qué es un widget?\nUn widget es un componente interactivo de una interfaz gráfica. Es una pieza visual que permite a los usuarios interactuar con una aplicación o presentación.\nEn el contexto de R y especialmente de Plotly, Shiny, o R Markdown/Quarto, un widget es un elemento que se puede:\n\nmover, hacer clic, deslizar, seleccionar, o interactuar de alguna forma."
+  },
+  {
+    "objectID": "Cap1_plotly.html#visualización-gráfica-1",
+    "href": "Cap1_plotly.html#visualización-gráfica-1",
+    "title": "3  Empleo de plotly",
+    "section": "3.2 Visualización gráfica 1",
+    "text": "3.2 Visualización gráfica 1\n\n\nCode\nplot1 &lt;- data %&gt;%\n  ggplot( aes(gdpPercap, lifeExp, size = pop, color=continent)) +\n  geom_point() +\n  theme_bw()\n# Grafica basica\nplot1\n\n\n\n\n\nConvertir a un gráfico interactivo\nLa función ggplotly() es parte del paquete plotly en R, y su principal función es convertir gráficos hechos con ggplot2 en gráficos interactivos.\n\n\nCode\nggplotly(plot1)\n\n\n\n\n\n\n¡Y listo! Ahora el gráfico es interactivo.\n\n\n\n\n\n\n¿Cuándo conviene usar plotly?\n\n\n\n\nCuando estás explorando datos y quieres ver detalles rápidamente.\nCuando presentas resultados a personas no técnicas que quieren “jugar” con los datos.\nEn dashboards hechos con Shiny o presentaciones en R Markdown/Quarto HTML."
+  },
+  {
+    "objectID": "Cap1_plotly.html#visualización-gráfica-2",
+    "href": "Cap1_plotly.html#visualización-gráfica-2",
+    "title": "3  Empleo de plotly",
+    "section": "3.3 Visualización gráfica 2",
+    "text": "3.3 Visualización gráfica 2\n\n\nCode\n# Seleccion de datos\nplot2_df &lt;- data %&gt;%\n  # Cambiar formatos\n  mutate(gdpPercap = round(gdpPercap,0)) %&gt;% # Eliminar decimales\n  mutate(pop = round(pop/1000000,2)) %&gt;% # Dejar en milones con dos decimas\n  mutate(lifeExp = round(lifeExp,1)) %&gt;% # dejar a una decimal\n  # Eeordenar esferas por pop\n  arrange(desc(pop)) %&gt;%\n  mutate(country = factor(country, country)) %&gt;%\n  # Preparar etiquetas (tooltip)\n  mutate(text = paste(\"Pais: \", country, \"\\nPoblación (M): \", \n                      pop, \"\\nEsperanza de vida: \", lifeExp, \"\\nGdp per capita: \", gdpPercap, sep=\"\")) \n  \n# Grafica basica\nplot2 &lt;- plot2_df %&gt;%\n  ggplot( aes(x=gdpPercap, y=lifeExp, size = pop, color = continent, text=text)) +\n  geom_point(alpha=0.7) +\n  scale_size(range = c(1.4, 19), name=\"Población (M)\") +\n  scale_color_viridis(discrete=TRUE, guide=FALSE) +\n  theme_ipsum() +\n  theme(legend.position=\"none\")\n\nplot2\n\n\n\n\n\nConvertir a plot interactivo\n\n\nCode\nplot2_interactive &lt;- ggplotly(plot2, tooltip=\"text\")\nplot2_interactive\n\n\n\n\n\n\nAlmacenar o guardar la información (widget)\n\n\nCode\nlibrary(htmlwidgets)\n\nsaveWidget(plot2_interactive, file= \"graphs/ggplotlyBubblechart.html\")\n\n\n\n\n\n\n\n\nEn resumen\n\n\n\n\nUn widget es cualquier elemento interactivo en una aplicación o presentación.\nLos gráficos interactivos con Plotly son widgets."
+  },
+  {
+    "objectID": "Cap1_plotly.html#visualización-gráfica-3",
+    "href": "Cap1_plotly.html#visualización-gráfica-3",
+    "title": "3  Empleo de plotly",
+    "section": "3.4 Visualización gráfica 3",
+    "text": "3.4 Visualización gráfica 3\n\n3.4.1 Paso 1: Crear el gráfico con plot_ly()\n\n\nCode\nplot3 &lt;- gapminder %&gt;%\n  plot_ly(\n    x = ~gdpPercap,         # Eje X: PIB per cápita\n    y = ~lifeExp,           # Eje Y: Esperanza de vida\n    size = ~pop,            # Tamaño de burbuja: Población\n    color = ~continent,     # Color: Continente\n    frame = ~year,          # Fotograma para animación: Año\n    text = ~country,        # Texto al pasar el cursor: Nombre del país\n    hoverinfo = \"text\",     # Muestra solo el texto personalizado\n    type = 'scatter',       # Tipo de gráfico: Dispersión\n    mode = 'markers'        # Solo marcadores (sin líneas)\n  )\n\n\nEsto genera un gráfico de burbujas por año, con diferentes colores según el continente y tamaños según la población.\n\n\n3.4.2 Paso 2: Ajustar el eje X a escala logarítmica\nComo los valores del PIB per cápita varían mucho entre países, es mejor mostrar el eje X en escala logarítmica para facilitar la comparación:\n\n\nCode\nplot3_interactive &lt;- plot3 %&gt;% layout(\n  xaxis = list(\n    type = \"log\"  # Escala logarítmica en el eje X\n  )\n)\n\n# Visualizar el gráfico\nplot3_interactive\n\n\n\n\n\n\nEsto muestra un gráfico animado, donde puedes:\n\nUsar los botones para avanzar año por año.\nHacer hover sobre un punto para ver el país.\nHacer zoom o mover el gráfico con el mouse."
+  },
+  {
+    "objectID": "Cap1_plotly.html#recomendaciones",
+    "href": "Cap1_plotly.html#recomendaciones",
+    "title": "3  Empleo de plotly",
+    "section": "3.5 📝 Recomendaciones:",
+    "text": "3.5 📝 Recomendaciones:\n\n\n\n\n\n\n\n¿Quieres…?\nUsa…\n\n\n\n\nConvertir un gráfico ggplot2 a interactivo rápidamente\nggplotly()\n\n\nCrear un gráfico totalmente interactivo desde cero\nplot_ly()\n\n\nHacer animaciones (por año, tiempo, etc.)\nplot_ly()\n\n\nPersonalizar profundamente la interacción del gráfico\nplot_ly()"
+  },
+  {
+    "objectID": "Cap1_plotly.html#referencias",
+    "href": "Cap1_plotly.html#referencias",
+    "title": "3  Empleo de plotly",
+    "section": "3.6 Referencias",
+    "text": "3.6 Referencias\n\nEjemplo1: Plotly - Quick start\nEjemplo2: Plotly - Ejemplo 2 de burbujas\nEjemplo3: Plotly - Animacion"
+  },
+  {
+    "objectID": "Cap2_ggiraph_p1.html#selección-de-datos",
+    "href": "Cap2_ggiraph_p1.html#selección-de-datos",
+    "title": "4  Pre-procesamiento de los datos",
+    "section": "4.1 Selección de datos",
+    "text": "4.1 Selección de datos\nNos gustaría conocer la información relacionada con la esperanza de vida (lifeExp), la población total del país (pop) y el producto interno bruto per cápita (gdpPercap) de los países involucrados en el Proyecto JAGUAR durante el año 2007, utilizando el conjunto de datos gapminder disponible a través del paquete gapminder en R.\n\n\nCode\n# Paises involucrados con el proyecto JAGUAR\nJAGUAR_paises &lt;-  c(\"Argentina\", \"Brazil\", \"Colombia\", \"Chile\", \"Mexico\", \"Peru\", \"Uruguay\")\n\n# Seleccionar la informacion relacionada con los paises del proyecto JAGUAR durante todos los years registrados\nJAGUAR_gapminder &lt;- gapminder::gapminder %&gt;% \n  # janitor::clean_names() %&gt;% # para limpiar y estandarizar los nombres de columnas de un data frame\n  mutate(\n    # Convertir paises de factor a caracter para tener capas independientes por paises en la figura interactiva\n    id = levels(country)[as.numeric(country)],\n    country = forcats::fct_reorder(country, lifeExp)) %&gt;% \n  filter(continent == \"Americas\") %&gt;%\n  filter(country %in% JAGUAR_paises) %&gt;% # seleccionar paises\n  droplevels()  # eliminar niveles de factor no utilizados\n\n\nRevisar informacion\n\n\nCode\n# Visualizar informacion en una tabla bonita\nJAGUAR_gapminder %&gt;%\n  DT::datatable()\n\n\n\n\n\n\n\nGuardar la variable\n\n\nCode\n# crear una carpeta para la salida\n# Eliminar si existe\nif (dir.exists(\"data\")) {\n  unlink(\"data\", recursive = TRUE)\n}\n\n# Crear el nuevo directorio\ndir.create(\"data\")\n\n# Guardar la variable\nsave(JAGUAR_gapminder, file = \"data/JAGUAR_gapminder.RData\")"
+  },
+  {
+    "objectID": "Cap2_ggiraph_p1.html#estadística-descriptiva-de-los-datos",
+    "href": "Cap2_ggiraph_p1.html#estadística-descriptiva-de-los-datos",
+    "title": "4  Pre-procesamiento de los datos",
+    "section": "4.2 Estadística descriptiva de los datos",
+    "text": "4.2 Estadística descriptiva de los datos\nObtener un resumen descriptivo de la esperanza de vida media en los países seleccionados.\n\n\nCode\nJAGUAR_gapminder %&gt;%\n  select(-continent, -id) %&gt;% \n  tbl_summary(\n    by = country, \n    statistic = list(all_continuous() ~ \"{mean} ({sd})\", \n                     all_categorical() ~ \"{n} / {N} ({p}%)\"),\n    digits = all_continuous() ~ 2) %&gt;% \n  modify_caption(\"Caracteristicas de los paises (N = {N})\") %&gt;%\n  as_gt()\n\n\n\n\n\n\n  Caracteristicas de los paises (N = 84)\n  \n    \n      Characteristic\n      Peru\nN = 121\n      Brazil\nN = 121\n      Colombia\nN = 121\n      Mexico\nN = 121\n      Chile\nN = 121\n      Argentina\nN = 121\n      Uruguay\nN = 121\n    \n  \n  \n    year\n1,979.50 (18.03)\n1,979.50 (18.03)\n1,979.50 (18.03)\n1,979.50 (18.03)\n1,979.50 (18.03)\n1,979.50 (18.03)\n1,979.50 (18.03)\n    lifeExp\n58.86 (9.57)\n62.24 (7.04)\n63.90 (6.98)\n65.41 (8.19)\n67.43 (8.67)\n69.06 (4.19)\n70.78 (3.34)\n    pop\n17,559,093.00 (7,053,307.63)\n122,312,126.67 (45,747,618.44)\n27,256,099.58 (10,535,047.08)\n68,414,297.42 (26,954,820.63)\n11,205,725.33 (3,333,125.57)\n28,602,239.92 (7,546,608.99)\n2,912,487.17 (368,526.99)\n    gdpPercap\n5,613.84 (1,056.66)\n5,829.32 (2,436.45)\n4,195.34 (1,652.93)\n7,724.11 (2,770.81)\n6,703.29 (3,026.19)\n8,955.55 (1,862.58)\n7,100.13 (1,612.26)\n  \n  \n  \n    \n      1 Mean (SD)"
+  },
+  {
+    "objectID": "Cap2_ggiraph_p1.html#referencias",
+    "href": "Cap2_ggiraph_p1.html#referencias",
+    "title": "4  Pre-procesamiento de los datos",
+    "section": "4.3 Referencias",
+    "text": "4.3 Referencias\n\nCap 6.5 EDA in tables - Tablas bonitas con estadistica\nCreating interactive visualizations with {ggiraph} (with or without Shiny)"
+  },
+  {
+    "objectID": "Cap3_ggiraph_p2.html#panel-a.-paises-que-participan-en-jaguar-project",
+    "href": "Cap3_ggiraph_p2.html#panel-a.-paises-que-participan-en-jaguar-project",
+    "title": "5  Empleo de ggiraph",
+    "section": "5.1 Panel A. Paises que participan en JAGUAR project",
+    "text": "5.1 Panel A. Paises que participan en JAGUAR project\n\n\nCode\n# Obtener los datos del mapa\nworld_map &lt;- ne_countries(scale = \"medium\", returnclass = \"sf\")\n\n# Filtrar los países de América Latina incluyendo México\nlatin_america &lt;- subset(world_map, name %in% c(\"Brazil\", \"Uruguay\", \"Argentina\", \"French Guiana\", \"Suriname\", \"Colombia\", \"Venezuela\", \"Bolivia\", \"Ecuador\", \"Chile\", \"Paraguay\", \"Peru\", \"Guyana\", \"Panama\", \"Costa Rica\", \"Nicaragua\", \"Honduras\", \"Belize\", \"Guatemala\", \"Mexico\", \"Trinidad and Tobago\", \"Caribe\", \"Puerto Rico\"))\n\n# Paises involucrados con el proyecto JAGUAR\nJAGUAR_paises &lt;-  c(\"Argentina\", \"Brazil\", \"Colombia\", \"Chile\", \"Mexico\", \"Peru\", \"Uruguay\")\n\n# Definir los colores para los países\nlatin_america &lt;- latin_america %&gt;% mutate(color = \n  case_when(\n  name == \"Argentina\" ~ \"#3392d0\",\n  name == \"Brazil\" ~ \"#9e3995\",\n  name == \"Colombia\" ~ \"#0552a1\",\n  name == \"Chile\" ~ \"#de20a0\",\n  name == \"Mexico\" ~ \"#047e60\",\n  name == \"Peru\" ~ \"#ea2f34\",\n  name == \"Uruguay\" ~ \"#f8bf23\",\n  TRUE ~ \"lightgrey\"\n))\n\n\n# Crear el mapa con ggplot2\nmap_plot &lt;- ggplot(data = latin_america) +\n  geom_sf(aes(fill = color, text = name), color = \"black\") +  # añadir `text` para tooltips\n  scale_fill_identity() +\n  theme_void() +\n  theme(\n    axis.title.x = element_blank(),\n    axis.title.y = element_blank(),\n    legend.position = \"none\") +\n  coord_sf()\n\n\nWarning in layer_sf(geom = GeomSf, data = data, mapping = mapping, stat = stat,\n: Ignoring unknown aesthetics: text\n\n\nCode\nmap_plot\n\n\n\n\n\n\n\n\n\n\n\nGuardar la figura\n\n\n\n\n\n5.1.1 ggsave\n\n\nCode\n# Guardar el mapa con alta calidad\nggsave(filename = \"graphs/mapa_latinoamerica.png\", \n       plot = map_plot, \n       width = 10,     # Ancho en pulgadas\n       height = 7,    # Altura en pulgadas\n       dpi = 300,     # Resolución en píxeles por pulgada\n       units = \"in\")  # Unidades de tamaño\n\n\n\n\n5.1.2 png\n\n\nCode\npng(\"graphs/mapa_latinoamerica_optionB.png\")\nprint(map_plot)\ndev.off()"
+  },
+  {
+    "objectID": "Cap3_ggiraph_p2.html#mi-primer-mapa-interactivo",
+    "href": "Cap3_ggiraph_p2.html#mi-primer-mapa-interactivo",
+    "title": "5  Empleo de ggiraph",
+    "section": "5.2 Mi primer mapa interactivo",
+    "text": "5.2 Mi primer mapa interactivo\n\n\nCode\n# Crear el mapa\np_jaguar &lt;- ggplot() +\n  # Fondo gris para todos los países de América Latina\n  geom_sf(data = latin_america, fill = \"lightgrey\", color = \"white\") +\n  \n  # Colorear los países del consorcio JAGUAR con interactividad\n  geom_sf_interactive(\n    data = filter(latin_america, name %in% JAGUAR_paises),\n    aes(fill = color, tooltip = name, data_id = name),\n    color = \"white\"\n  ) +\n  \n  scale_fill_identity() +  # Para usar directamente los colores definidos\n  coord_sf(crs = st_crs(3857)) +\n  theme_void() +\n  theme(legend.position = \"none\")\np_jaguar\n\n\n\n\n\nCode\n# Mostrar como mapa interactivo\ngirafe(ggobj = p_jaguar)"
+  },
+  {
+    "objectID": "Cap3_ggiraph_p2.html#panel-b.-población-total-por-paises",
+    "href": "Cap3_ggiraph_p2.html#panel-b.-población-total-por-paises",
+    "title": "5  Empleo de ggiraph",
+    "section": "5.3 Panel B. Población total por paises",
+    "text": "5.3 Panel B. Población total por paises\n\n\nCode\n# Crear el boxplot interactivo con los datos de JAGUAR_gapminder\nbox_plot &lt;- JAGUAR_gapminder %&gt;%\n  ggplot(aes(x = pop, y = country, fill = country, data_id = id)) +\n  # Agregar boxplots interactivos con ligero desplazamiento vertical\n  geom_boxplot_interactive(\n    position = position_nudge(y = 0.25),  # Desplaza los boxplots hacia abajo\n    width = 0.5 # Controla el ancho de las cajas\n  ) +\n  # Agregar marcas verticales tipo \"barra\" para valores individuales, también interactivos\n  geom_point_interactive(\n    aes(col = country, tooltip = id),                  # Color por país\n    position = position_nudge(y = -0.25),# Desplaza puntos hacia arriba\n    size = 8,                            # Tamaño de la marca\n    shape = '|',                         # Tipo de marcador vertical\n    alpha = 0.75                         # Transparencia\n  ) +\n  scale_fill_manual(values = paises_pal) +\n  scale_color_manual(values = paises_pal) +\n  # Etiquetas y título del gráfico\n  labs(\n    x = 'Población total (en años)',\n    y = element_blank(),\n    title = glue::glue('Distribución de la población')\n  ) +\n  # Tema minimalista y ajustes estéticos\n  theme_minimal(base_size = 12) +\n  theme(\n    text = element_text(\n      color = 'grey20'\n    ),\n    legend.position = 'none',\n    panel.grid.minor = element_blank(),\n    plot.title.position = 'plot'\n  )\nbox_plot\n\n\n\n\n\n\n5.3.1 Volver interactivo\n\n\nCode\ngirafe(\n  ggobj = box_plot) # Objeto ggplot a convertir en interactivo\n\n\n\n\n\n\nActualmente, nuestro gráfico de líneas se vuelve naranja cuando pasamos el ratón por encima de ellas. Todo lo demás permanece sin cambios. Cambiémoslo para que todas las líneas menos una se vuelvan transparentes.\nLa forma de hacerlo es pasar una lista de opciones a girafe(). Esta lista contendrá opts_hover() y opts_hover_inv() para determinar el código CSS que debe aplicarse. Además, fijemos el tamaño de nuestra trama con opts_sizing().\n\n\nCode\n# Convertir en gráfico interactivo\ngirafe(\n  ggobj = box_plot,  # Gráfico generado con geom_*_interactive\n  options = list(\n    opts_hover(css = ''),   # Estilo CSS para el elemento bajo el cursor\n    opts_hover_inv(css = \"opacity:0.1;\"), # Estilo CSS para los demás elementos (baja opacidad)\n    opts_sizing(rescale = FALSE) # Mantiene el tamaño fijo del gráfico\n  ),\n  \n  height_svg = 6,  # Altura del gráfico en SVG\n  width_svg = 9    # Ancho del gráfico en SVG\n)\n\n\n\n\n\n\n\n\n\n\n\n\nNotas\n\n\n\n\nline_chart debe ser un objeto creado con ggplot() que use geoms interactivos como geom_line_interactive().\nopts_hover(css = ''): puedes personalizar aquí el estilo al pasar el mouse sobre una línea (ej. cambiar color o grosor).\nopts_hover_inv(css = 'opacity:0.1;'): permite resaltar una línea al atenuar las otras.\nheight_svg y width_svg definen el tamaño del gráfico exportado/interactivo."
+  },
+  {
+    "objectID": "Cap3_ggiraph_p2.html#panel-c.-esperanza-de-vida-atraves-del-tiempo",
+    "href": "Cap3_ggiraph_p2.html#panel-c.-esperanza-de-vida-atraves-del-tiempo",
+    "title": "5  Empleo de ggiraph",
+    "section": "5.4 Panel C. Esperanza de vida atraves del tiempo",
+    "text": "5.4 Panel C. Esperanza de vida atraves del tiempo\n\n\nCode\n# Crear archivo de lineas sobre la esperanza de vida\nline_chart &lt;- JAGUAR_gapminder %&gt;%\n  ggplot(aes(x = year, y = lifeExp, col = country, data_id = id)) +\n  geom_line_interactive(linewidth = 2.5) +\n  geom_point_interactive(aes(tooltip = id), size = 4) +\n  theme_minimal(base_size = 12) +\n  labs(\n    x = element_blank(),\n    y = 'Esperanza de vida \\n(en años)',\n    title = 'Esperanza de vida a lo largo del tiempo'\n  ) +\n  theme(\n    text = element_text(\n      color = 'grey20'\n    ),\n    legend.position = 'none',\n    panel.grid.minor = element_blank(),\n    plot.title.position = 'plot') +\n  scale_color_manual(values = paises_pal)\n\nline_chart\n\n\n\n\n\n\n5.4.1 Volver interactivo\n\n\nCode\ngirafe(\n  ggobj = line_chart, # Objeto ggplot a convertir en interactivo\n  # Seleccionar el Estilo CSS para la línea sobre la que se pasa el cursor\n  options = list(\n    opts_hover(css = ''), ## CSS code of line we're hovering over\n     # Estilo CSS para las demás líneas que no están siendo enfocadas (reduce opacidad)\n    opts_hover_inv(css = \"opacity:0.1;\"), ## CSS code of all other lines\n    # Fija el tamaño del gráfico (no permite que cambie con el tamaño del contenedor)\n    opts_sizing(rescale = FALSE) ## Fixes sizes to dimensions below\n  ),\n  # Altura del gráfico en unidades SVG\n  height_svg = 6,\n  # Ancho del gráfico en unidades SVG\n  width_svg = 9\n)"
+  },
+  {
+    "objectID": "Cap3_ggiraph_p2.html#unir-panel-b-y-c",
+    "href": "Cap3_ggiraph_p2.html#unir-panel-b-y-c",
+    "title": "5  Empleo de ggiraph",
+    "section": "5.5 Unir Panel B y C",
+    "text": "5.5 Unir Panel B y C\n\n\nCode\ninteractive_plot &lt;- girafe(\n  # Combina el boxplot y el gráfico de líneas en una sola visualización interactiva\n  ggobj = box_plot + plot_spacer() + line_chart + \n    plot_layout(widths = c(0.45, 0.1, 0.45)),\n  # Opciones de interactividad para girafe\n  options = list(\n    opts_hover(css = ''),\n    opts_hover_inv(css = \"opacity:0.1;\"), \n    opts_sizing(rescale = FALSE)\n  ),\n  # Dimensiones del gráfico en unidades SVG\n  height_svg = 6,\n  width_svg = 8\n)\n\ninteractive_plot"
+  },
+  {
+    "objectID": "Cap3_ggiraph_p2.html#unir-panel-a-b-y-c",
+    "href": "Cap3_ggiraph_p2.html#unir-panel-a-b-y-c",
+    "title": "5  Empleo de ggiraph",
+    "section": "5.6 Unir Panel A, B y C",
+    "text": "5.6 Unir Panel A, B y C\n\n\nCode\n# Layout con patchwork: mapa arriba, boxplot + line_chart abajo\nlayout_total &lt;- p_jaguar | (box_plot / line_chart) + plot_layout(widths = c(0.45, 0.1, 0.45)) \n#+ plot_layout(heights = c(0.5, 0.5))  # mitad mapa, mitad box + línea\n\n# Convertir todo en visualización interactiva\ninteractive_plot &lt;- girafe(\n  ggobj = layout_total,\n  options = list(\n    opts_hover(css = ''),\n    opts_hover_inv(css = \"opacity:0.1;\"),\n    opts_sizing(rescale = FALSE)\n  ),\n  height_svg = 6,\n  width_svg = 8\n)\n\ninteractive_plot\n\n\n\n\n\n\nGuardar el plot interactivo\n\n\nCode\nhtmltools::save_html(interactive_plot, \"graphs/multiple-ggiraph-1.html\")"
+  },
+  {
+    "objectID": "Cap3_ggiraph_p2.html#referencias",
+    "href": "Cap3_ggiraph_p2.html#referencias",
+    "title": "5  Empleo de ggiraph",
+    "section": "5.7 Referencias",
+    "text": "5.7 Referencias\n\nCreating interactive visualizations with {ggiraph} (with or without Shiny)\nMore complex CSS\nggiraph manual"
+  },
+  {
+    "objectID": "Cap4_ggiraph_examples.html#ejemplo-1",
+    "href": "Cap4_ggiraph_examples.html#ejemplo-1",
+    "title": "6  Otros ejemplos con ggiraph",
+    "section": "6.1 Ejemplo 1",
+    "text": "6.1 Ejemplo 1\n\n\nCode\n# Example data - replace with your data\nmap_data &lt;- data.frame(\n  id = 1:3,\n  lat = c(40, 42, 37),\n  lon = c(-100, -120, -95),\n  group = c(\"A\", \"B\", \"C\")\n)\n\nline_data &lt;- data.frame(\n  id = rep(1:3, each = 10),\n  time = rep(seq(as.Date(\"2021-01-01\"), by = \"1 month\", length.out = 10), 3),\n  value = rnorm(30),\n  group = rep(c(\"A\", \"B\", \"C\"), each = 10)\n)\n\n# Map with interactive points\nmap_plot &lt;- ggplot() +\n  borders(\"world\", colour = \"gray80\", fill = \"gray90\") +  # Add a world map background\n  geom_point_interactive(data = map_data, aes(x = lon, y = lat, size = 5, color=group, tooltip = group, data_id = group)) +\n  theme_minimal() +\n  theme(legend.position = \"none\") +\n  coord_sf(xlim = c(-130, -65), ylim = c(10, 75)) \n\n\n# Line chart with interactive lines\nline_plot &lt;- ggplot(line_data, aes(x = time, y = value, group = group, color=group)) +\n  geom_line_interactive(aes(data_id = group, tooltip = group))\n\ncombined_plot &lt;- girafe(\n  ggobj = map_plot + plot_spacer() + line_plot + plot_layout(widths = c(0.35, 0, 0.65)),\n  options = list(\n    opts_hover(css = ''),\n    opts_hover_inv(css = \"opacity:0.1;\"), \n    opts_sizing(rescale = FALSE)\n  ),\n  height_svg = 4,\n  width_svg = 12\n)\n\n\n\n\nCode\ncombined_plot"
+  },
+  {
+    "objectID": "Cap4_ggiraph_examples.html#ejemplo-2",
+    "href": "Cap4_ggiraph_examples.html#ejemplo-2",
+    "title": "6  Otros ejemplos con ggiraph",
+    "section": "6.2 Ejemplo 2",
+    "text": "6.2 Ejemplo 2\n\n\nCode\n# Read the full world map\nworld_sf &lt;- read_sf(\"https://raw.githubusercontent.com/holtzy/R-graph-gallery/master/DATA/world.geojson\")\nworld_sf &lt;- world_sf %&gt;%\n  filter(!name %in% c(\"Antarctica\", \"Greenland\"))\n\n# Create a sample dataset\nhappiness_data &lt;- data.frame(\n  Country = c(\n    \"France\", \"Germany\", \"United Kingdom\",\n    \"Japan\", \"China\", \"Vietnam\",\n    \"United States of America\", \"Canada\", \"Mexico\"\n  ),\n  Continent = c(\n    \"Europe\", \"Europe\", \"Europe\",\n    \"Asia\", \"Asia\", \"Asia\",\n    \"North America\", \"North America\", \"North America\"\n  ),\n  Happiness_Score = rnorm(mean = 30, sd = 20, n = 9),\n  GDP_per_capita = rnorm(mean = 30, sd = 20, n = 9),\n  Social_support = rnorm(mean = 30, sd = 20, n = 9),\n  Healthy_life_expectancy = rnorm(mean = 30, sd = 20, n = 9)\n)\n\n# Join the happiness data with the full world map\nworld_sf &lt;- world_sf %&gt;%\n  left_join(happiness_data, by = c(\"name\" = \"Country\"))\n\n# Create the first chart (Scatter plot)\np1 &lt;- ggplot(world_sf, aes(\n  GDP_per_capita,\n  Happiness_Score,\n  tooltip = name,\n  data_id = Continent,\n  color = Continent\n)) +\n  geom_point_interactive(data = filter(world_sf, !is.na(Happiness_Score)), size = 4) +\n  theme_minimal() +\n  theme(\n    axis.title.x = element_blank(),\n    axis.title.y = element_blank(),\n    legend.position = \"none\"\n  )\n\n# Create the second chart (Bar plot)\np2 &lt;- ggplot(world_sf, aes(\n  x = reorder(name, Happiness_Score),\n  y = Happiness_Score,\n  tooltip = name,\n  data_id = Continent,\n  fill = Continent\n)) +\n  geom_col_interactive(data = filter(world_sf, !is.na(Happiness_Score))) +\n  coord_flip() +\n  theme_minimal() +\n  theme(\n    axis.title.x = element_blank(),\n    axis.title.y = element_blank(),\n    legend.position = \"none\"\n  )\n\n# Create the third chart (choropleth)\n# Create the third chart (choropleth)\np3 &lt;- ggplot() +\n  geom_sf(data = world_sf, fill = \"lightgrey\", color = \"lightgrey\") +\n  geom_sf_interactive(\n    data = filter(world_sf, !is.na(Happiness_Score)),\n    aes(fill = Continent, tooltip = name, data_id = Continent)\n  ) +\n  coord_sf(crs = st_crs(3857)) +\n  theme_void() +\n  theme(\n    axis.title.x = element_blank(),\n    axis.title.y = element_blank(),\n    legend.position = \"none\"\n  )\n\n# Combine the plots\ncombined_plot &lt;- (p1 + p2) / p3 + plot_layout(heights = c(1, 2))\n\n# Create CSS\ntooltip_css &lt;- \"\n  border-radius: 12px;\n  color: #333;\n  background-color: white;\n  padding: 10px;\n  font-size: 14px;\n  transition: all 0.5s ease-out;\n\"\n\nhover_css &lt;- \"\n  filter: brightness(75%);\n  cursor: pointer;\n  transition: all 0.5s ease-out;\n  filter: brightness(1.15);\n\"\n\n# Create the interactive plot\ninteractive_plot &lt;- girafe(ggobj = combined_plot)\n# Add interactivity\ninteractive_plot &lt;- interactive_plot %&gt;%\n  girafe_options(\n    opts_hover(css = hover_css),\n    opts_tooltip(css = tooltip_css),\n    opts_hover_inv(css = \"opacity:0.3; transition: all 0.2s ease-out;\")\n  )\ninteractive_plot\n\n\n\n\n\n\n\n\n\n\n\n\nOtras graficas\n\n\n\nDe igual manera existen otros paquetes interactivos que puedes visitar y emplear:\nChapter 13 Interactive Graphs"
+  },
+  {
+    "objectID": "Cap4_ggiraph_examples.html#referencias",
+    "href": "Cap4_ggiraph_examples.html#referencias",
+    "title": "6  Otros ejemplos con ggiraph",
+    "section": "6.3 Referencias",
+    "text": "6.3 Referencias\n\nEjemplo1: Productive workflow - ggiraph\nEjemplo2: Graficas ggiraph y CSS\nChapter 13 Interactive Graphs"
+  },
+  {
+    "objectID": "tema2.html#recomendaciones-para-crear-figuras-completas-en-r",
+    "href": "tema2.html#recomendaciones-para-crear-figuras-completas-en-r",
+    "title": "7  Figuras para Publicaciones Científicas",
+    "section": "7.1 🎨 Recomendaciones para crear figuras completas en R",
+    "text": "7.1 🎨 Recomendaciones para crear figuras completas en R\nPara combinar múltiples gráficos en una sola figura o panel, podemos utilizar paquetes como cowplot y patchwork. Estas herramientas son muy útiles para organizar visualizaciones de forma clara y profesional, como en el ejemplo que te mostré anteriormente.\nAdemás, es fundamental seguir practicando y formándote continuamente. Por ello, recomiendo tomar cursos especializados en visualización de datos con R, ya que te permitirán mejorar tus habilidades y aprender buenas prácticas.\nUno de los cursos que recomiendo es:\n\nPublication Perfect, Github, pagina web, Ejemplo de figura completa\nCreating Publication Quality Graphics in R, Libro, Ejemplo de figura completa\nCreating publication quality graphs in R, ejemplos"
+  },
+  {
+    "objectID": "Cap5_QuartoJournals.html#por-qué-usar-quarto-para-tus-artículos",
+    "href": "Cap5_QuartoJournals.html#por-qué-usar-quarto-para-tus-artículos",
+    "title": "8  Escritura de articulos en Quarto",
+    "section": "8.1 🚀 ¿Por qué usar Quarto para tus artículos?",
+    "text": "8.1 🚀 ¿Por qué usar Quarto para tus artículos?\n\nIntegra código R, Python y otros lenguajes directamente en el documento.\nProduce documentos en múltiples formatos: HTML, PDF, Word, e incluso presentaciones.\nPermite automatizar la generación de resultados y figuras, manteniendo todo actualizado.\nEs ideal para fomentar la reproducibilidad científica."
+  },
+  {
+    "objectID": "Cap5_QuartoJournals.html#recursos-para-aprender-más",
+    "href": "Cap5_QuartoJournals.html#recursos-para-aprender-más",
+    "title": "8  Escritura de articulos en Quarto",
+    "section": "8.2 📚 Recursos para aprender más",
+    "text": "8.2 📚 Recursos para aprender más\n\nCurso oficial gratuito por parte de Quarto, Journal Articles\nIntroduction to Reproducible Publications with Quarto,Carpentries\nManual completo de Quarto, libro"
+  },
+  {
+    "objectID": "Cap6_Completefigure.html#ejemplo-1--patchwork",
+    "href": "Cap6_Completefigure.html#ejemplo-1--patchwork",
+    "title": "9  Creación de Figuras completas paso a paso",
+    "section": "9.1 Ejemplo 1- patchwork",
+    "text": "9.1 Ejemplo 1- patchwork"
+  },
+  {
+    "objectID": "Cap6_Completefigure.html#ejemplo-2---patchwork-grid",
+    "href": "Cap6_Completefigure.html#ejemplo-2---patchwork-grid",
+    "title": "9  Creación de Figuras completas paso a paso",
+    "section": "9.2 Ejemplo 2 - patchwork + grid",
+    "text": "9.2 Ejemplo 2 - patchwork + grid"
+  },
+  {
+    "objectID": "Cap6_Completefigure.html#ejemplo-3---cowplot",
+    "href": "Cap6_Completefigure.html#ejemplo-3---cowplot",
+    "title": "9  Creación de Figuras completas paso a paso",
+    "section": "9.3 Ejemplo 3 - cowplot",
+    "text": "9.3 Ejemplo 3 - cowplot"
+  },
+  {
+    "objectID": "Cap6_Completefigure.html#ejemplo-4",
+    "href": "Cap6_Completefigure.html#ejemplo-4",
+    "title": "9  Creación de Figuras completas paso a paso",
+    "section": "9.4 Ejemplo 4",
+    "text": "9.4 Ejemplo 4"
+  },
+  {
+    "objectID": "Cap6_Completefigure.html#referencias",
+    "href": "Cap6_Completefigure.html#referencias",
+    "title": "9  Creación de Figuras completas paso a paso",
+    "section": "9.5 Referencias",
+    "text": "9.5 Referencias\n\nEjemplo 1: usando patchwork y gapminder\nEjemplo 2: usando patchwork, gridExtra y gapminder\nEjemplo 3: Pajaritos\nEjemplo 4: Unir informacion de una figura"
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "10  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n\nCode\n1 + 1\n\n\n[1] 2"
+  }
+]

@@ -5,24 +5,28 @@ project:
 book:
   title: "Workshop de Graficas Interactivas y articulos"
   author: "Evelia Coss"
-  date: "7/5/2025"
+  date: "6/7/2025"
   page-navigation: true
   chapters:
     - index.qmd
-    - intro.qmd
-  - part: "**Sección 1** - Bienvenida e Introducción"
-    chapters:
-    - Cap1_Datos.qmd
-    - Cap2_Mapas.qmd
-    - summary.qmd
-    - references.qmd
+    - salvavidas.qmd
+    - tema1.qmd
+    - part: "Gráficas interactivas"
+      chapters:
+      - Cap1_plotly.qmd
+      - Cap2_ggiraph_p1.qmd
+      - Cap3_ggiraph_p2.qmd
+      - Cap4_ggiraph_examples.qmd
+    - part: "Gráficas interactivas"
+      chapters:
+      - tema2.qmd
+      - Cap5_QuartoJournals.qmd
+      - Cap6_Completefigure.qmd
+      - summary.qmd
   # Information
-  site-url: https://cabana.network/ # 📍URL del sitio completo CABANANet
-  repo-url: https://github.com/EveliaCoss/CABANAnet_TrainTrainers2025 # link de Github
+  repo-url: https://github.com/EveliaCoss/Workshop_GraficasInteractivas_papers # link de Github
   sharing: [twitter, facebook, linkedin]
-  favicon: "figures/cabananet_logo.png" # icono de la pagina en pestana
-
-bibliography: references.bib
+  favicon: "figures/LIIGHUNAM_logo.png" # icono de la pagina en pestana
 
 format:
   html:

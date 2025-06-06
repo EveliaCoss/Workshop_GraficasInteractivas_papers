@@ -1,0 +1,26 @@
+# Oportunidad especial para obtener el diploma
+
+**Edición 2025, Parte 3 🌱**
+
+Queremos que este curso no solo sea una experiencia de aprendizaje, sino también una oportunidad para crecer, compartir y apoyar a quienes enfrentaron retos para asistir a todas las sesiones. Por eso, por única ocasión, ofrecemos una vía alternativa para obtener el **diploma**: realizar un proyecto final y presentarlo en video.
+
+Esta opción es **voluntaria** y pensada con cariño, como un puente para quienes han estado comprometidos con el curso pero no pudieron estar presentes en todo momento. Además, tu proyecto puede convertirse en una herramienta valiosa para otras personas que deseen aprender, así que te invitamos a hacerlo con dedicación y corazón 💛
+
+Como toda oportunidad especial, esta opción tiene algunos requisitos importantes que deberás seguir. A continuación, te compartimos las instrucciones:
+
+::: {.callout-note icon="false"}
+## Trabajo individual
+
+Instrucciones:
+
+-   Seleccionar uno de los [Datasets](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html) precargados en R o los que son propios de los [paquetes](https://vincentarelbundock.github.io/Rdatasets/articles/data.html).
+-   Analiza los datos y genera 3 preguntas que puedas contestar con las variables que tienes.
+-   Genera un script completo que nos conteste las preguntas realizadas y nos de gráficas de cada uno.
+-   NOTA: No olvides agregar la programación defensiva y un poco de todo lo visto en clase (Manipulación de datos, funciones, BUENAS PRÁCTICAS, ggplot2 o Complexheatmap).
+-   NOTA: No olvides que es muy importante documentar todo.
+-   Entregables:
+    -   Crear un reporte o un libro en Rmarkdown o Quarto.
+    -   Graba tu explicación en un video de 15 min máximo empleando Xaringan, Rmarkdown o Quarto en R (práctica el tiempo para que sea de provecho).
+    -   Sube todo a Github, el repositorio debe ser público y debe contener tu reporte, presentación y video. NO olvides poner tu nombre en el README.
+-   **Entrega: 18 de junio 2025, 11 pm hora Ciudad de México**
+:::

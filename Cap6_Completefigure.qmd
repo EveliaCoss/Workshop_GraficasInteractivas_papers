@@ -1,0 +1,35 @@
+# Creación de Figuras completas paso a paso
+
+Te invito a que practiques con los códigos y figuras que aparecen en las secciones anteriores. La mejor forma de aprender a generar visualizaciones efectivas en R es **experimentando por tu cuenta**:
+
+-    Cambia los datos.
+-   Modifica los colores, títulos y escalas.
+-   Prueba combinar gráficos usando `patchwork` o `cowplot`.
+-   Intenta hacer tus propias figuras a partir de tus datos de interés.
+
+💡 **Recuerda:** dominar la creación de figuras lleva tiempo, pero con práctica constante te sentirás más seguro/a. Usa estos ejemplos como punto de partida y crea tus propias visualizaciones.
+
+¡Diviértete explorando y visualizando tus datos!
+
+## Ejemplo 1- patchwork
+
+[![](figrues/exmple1.webp)](https://cmdlinetips.com/2020/01/tips-to-combine-multiple-ggplots-using-patchwork/)
+
+## Ejemplo 2 - patchwork + grid
+
+[![](figrues/example2A.png)](https://cmdlinetips.com/2020/01/tips-to-combine-multiple-ggplots-using-patchwork/)
+
+## **Ejemplo 3 - cowplot**
+
+[![](figrues/gaedeetal_fig3.png)](https://beep-boopr.github.io/ubcBIOL548L/articles/group-03_Using-cowplot-multi-panel.html)
+
+## **Ejemplo 4**
+
+[![](figrues/example2.jpg)](https://hbctraining.github.io/publication_perfect/lessons/09_final_figure.html)
+
+## Referencias
+
+-   Ejemplo 1: usando [patchwork y gapminder](https://cmdlinetips.com/2020/01/tips-to-combine-multiple-ggplots-using-patchwork/)
+-   Ejemplo 2: usando [patchwork, gridExtra y gapminder](https://cmdlinetips.com/2020/01/tips-to-combine-multiple-ggplots-using-patchwork/)
+-   Ejemplo 3: [Pajaritos](https://beep-boopr.github.io/ubcBIOL548L/articles/group-03_Using-cowplot-multi-panel.html)
+-   Ejemplo 4: [Unir informacion de una figura](https://hbctraining.github.io/publication_perfect/lessons/09_final_figure.html)

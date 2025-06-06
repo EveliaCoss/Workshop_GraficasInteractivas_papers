@@ -1,2 +1,0 @@
-"0","# Layout con patchwork: mapa arriba, boxplot + line_chart abajo"
-"0","layout_total <- p_jaguar | (box_plot / line_chart) + plot_layout(widths = c(0.45, 0.1, 0.45)) "
