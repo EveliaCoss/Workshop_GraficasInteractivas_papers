@@ -1,0 +1,3 @@
+"0","paises_pal  <- c(""#3392d0"", ""#9e3995"", ""#0552a1"",""#de20a0"", ""#047e60"", ""#ea2f34"", ""#f8bf23"")"
+"0","names(paises_pal) <- c(""Argentina"", ""Brazil"", ""Colombia"", ""Chile"", ""Mexico"", ""Peru"", ""Uruguay"")"
+"0","scales::show_col(paises_pal)"

@@ -1,0 +1,4 @@
+"0","library(tidyverse) # Manipulacion, limpieza y visualizacion de datos"
+"0","library(gapminder) # Base de datos"
+"0","library(DT)        # Tablas bonitas"
+"0","library(gtsummary) # install.packages(""gtsummary"")"

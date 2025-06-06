@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "Workshop_GraficasInteractivas_papers"
+  author: "Norah Jones"
+  date: "6/3/2025"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - Cap1_Datos.qmd
+    - Cap2_Mapas.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

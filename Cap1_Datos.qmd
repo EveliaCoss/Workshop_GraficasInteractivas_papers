@@ -1,0 +1,77 @@
+# Pre-procesamiento de los datos
+
+En esta sección llevaremos a cabo la manipulación y limpieza de los datos que utilizaremos en los ejercicios posteriores.
+
+Cargar paquetes en R
+
+```{r packages, warning=FALSE, message=FALSE}
+library(tidyverse) # Manipulacion, limpieza y visualizacion de datos
+library(gapminder) # Base de datos
+library(DT)        # Tablas bonitas
+library(gtsummary) # install.packages("gtsummary")
+```
+
+## Selección de datos
+
+Nos gustaría conocer la información relacionada con la esperanza de vida (`lifeExp`), la población total del país (`pop`) y el producto interno bruto per cápita (`gdpPercap`) de los países involucrados en el **Proyecto JAGUAR** durante el año 2007, utilizando el conjunto de datos [*gapminder*](https://www.gapminder.org/) disponible a través del paquete `gapminder` en R.
+
+```{r}
+# Paises involucrados con el proyecto JAGUAR
+JAGUAR_paises <-  c("Argentina", "Brazil", "Colombia", "Chile", "Mexico", "Peru", "Uruguay")
+
+# Seleccionar la informacion relacionada con los paises del proyecto JAGUAR durante todos los years registrados
+JAGUAR_gapminder <- gapminder::gapminder %>% 
+  # janitor::clean_names() %>% # para limpiar y estandarizar los nombres de columnas de un data frame
+  mutate(
+    # Convertir paises de factor a caracter para tener capas independientes por paises en la figura interactiva
+    id = levels(country)[as.numeric(country)],
+    country = forcats::fct_reorder(country, lifeExp)) %>% 
+  filter(continent == "Americas") %>%
+  filter(country %in% JAGUAR_paises) %>% # seleccionar paises
+  droplevels()  # eliminar niveles de factor no utilizados
+```
+
+Revisar informacion
+
+```{r Data}
+# Visualizar informacion en una tabla bonita
+JAGUAR_gapminder %>%
+  DT::datatable()
+```
+
+Guardar la variable
+
+```{r}
+# crear una carpeta para la salida
+# Eliminar si existe
+if (dir.exists("data")) {
+  unlink("data", recursive = TRUE)
+}
+
+# Crear el nuevo directorio
+dir.create("data")
+
+# Guardar la variable
+save(JAGUAR_gapminder, file = "data/JAGUAR_gapminder.RData")
+```
+
+## Estadística descriptiva de los datos
+
+Obtener un resumen descriptivo de la esperanza de vida media en los países seleccionados.
+
+```{r general_table}
+JAGUAR_gapminder %>%
+  select(-continent, -id) %>% 
+  tbl_summary(
+    by = country, 
+    statistic = list(all_continuous() ~ "{mean} ({sd})", 
+                     all_categorical() ~ "{n} / {N} ({p}%)"),
+    digits = all_continuous() ~ 2) %>% 
+  modify_caption("Caracteristicas de los paises (N = {N})") %>%
+  as_gt()
+```
+
+## Referencias
+
+-   Cap 6.5 [EDA in tables](https://bookdown.org/drki_musa/dataanalysis/exploratory-data-analysis.html#eda-in-tables) - Tablas bonitas con estadistica
+-   [Creating interactive visualizations with `{ggiraph}` (with or without Shiny)](https://albert-rapp.de/posts/ggplot2-tips/17_ggiraph/17_ggiraph.html)

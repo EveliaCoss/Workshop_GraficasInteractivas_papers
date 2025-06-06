@@ -1,0 +1,23 @@
+{
+  "index.qmd": {
+    "index.html": "8fc6d3a9"
+  },
+  "intro.qmd": {
+    "intro.html": "399b02b5"
+  },
+  "Cap1_Mapas.qmd": {
+    "Cap1_Mapas.html": "5e94d235"
+  },
+  "summary.qmd": {
+    "summary.html": "7c310b80"
+  },
+  "references.qmd": {
+    "references.html": "450c1d6a"
+  },
+  "Cap1_Datos.qmd": {
+    "Cap1_Datos.html": "4b377e6f"
+  },
+  "Cap2_Mapas.qmd": {
+    "Cap2_Mapas.html": "aa5a65ba"
+  }
+}

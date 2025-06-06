@@ -1,0 +1,33 @@
+"0","box_plot <- gapminder_dat %>%
+  filter(year == selected_year) %>%
+  ggplot(aes(x = life_exp, y = country, fill = country, data_id = id)) +
+  geom_boxplot_interactive(
+    position = position_nudge(y = 0.25), 
+    width = 0.5
+  ) +
+  geom_point_interactive(
+    aes(col = country),
+    position = position_nudge(y = -0.25),
+    size = 8,
+    shape = '|',
+    alpha = 0.75
+  ) +
+  scale_fill_manual(values = color_palette) +
+  scale_color_manual(values = color_palette) +
+  labs(
+    x = 'Esperanza de vida (en años)',
+    y = element_blank(),
+    title = glue::glue('Distribución de la esperanza de vida en {selected_year}')
+  ) +
+  theme_minimal(base_size = base_size) +
+  theme(
+    text = element_text(
+      color = 'grey20'
+    ),
+    legend.position = 'none',
+    panel.grid.minor = element_blank(),
+    plot.title.position = 'plot'
+  ) 
+"
+"2","Error: object 'color_palette' not found
+"

@@ -1,0 +1,294 @@
+# Visualización gráfica de los datos
+
+Cargar paquetes
+
+```{r packages, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(rnaturalearth) # install.packages("rnaturalearth")
+library(rnaturalearthdata) # install.packages("rnaturalearthdata")
+library(patchwork) # unir graficas
+# library(plotly) # plot interactivos
+library(sf)
+library(ggiraph)
+
+# Cargar archivo
+load("data/JAGUAR_gapminder.RData")
+```
+
+Paleta de colores
+
+```{r}
+paises_pal  <- c("#3392d0", "#9e3995", "#0552a1","#de20a0", "#047e60", "#ea2f34", "#f8bf23")
+names(paises_pal) <- c("Argentina", "Brazil", "Colombia", "Chile", "Mexico", "Peru", "Uruguay")
+scales::show_col(paises_pal)
+```
+
+## Panel A. Paises que participan en JAGUAR project
+
+```{r world_map}
+# Obtener los datos del mapa
+world_map <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Filtrar los países de América Latina incluyendo México
+latin_america <- subset(world_map, name %in% c("Brazil", "Uruguay", "Argentina", "French Guiana", "Suriname", "Colombia", "Venezuela", "Bolivia", "Ecuador", "Chile", "Paraguay", "Peru", "Guyana", "Panama", "Costa Rica", "Nicaragua", "Honduras", "Belize", "Guatemala", "Mexico", "Trinidad and Tobago", "Caribe", "Puerto Rico"))
+
+# Paises involucrados con el proyecto JAGUAR
+JAGUAR_paises <-  c("Argentina", "Brazil", "Colombia", "Chile", "Mexico", "Peru", "Uruguay")
+
+# Definir los colores para los países
+latin_america <- latin_america %>% mutate(color = 
+  case_when(
+  name == "Argentina" ~ "#3392d0",
+  name == "Brazil" ~ "#9e3995",
+  name == "Colombia" ~ "#0552a1",
+  name == "Chile" ~ "#de20a0",
+  name == "Mexico" ~ "#047e60",
+  name == "Peru" ~ "#ea2f34",
+  name == "Uruguay" ~ "#f8bf23",
+  TRUE ~ "lightgrey"
+))
+
+
+# Crear el mapa con ggplot2
+map_plot <- ggplot(data = latin_america) +
+  geom_sf(aes(fill = color, text = name), color = "black") +  # añadir `text` para tooltips
+  scale_fill_identity() +
+  theme_void() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    legend.position = "none") +
+  coord_sf()
+
+map_plot
+```
+
+::: {.callout-tip icon="false"}
+## Guardar la figura
+
+::: tabs
+### ggsave
+
+```{r, eval=FALSE}
+# Guardar el mapa con alta calidad
+ggsave(filename = "graphs/mapa_latinoamerica.png", 
+       plot = map_plot, 
+       width = 10,     # Ancho en pulgadas
+       height = 7,    # Altura en pulgadas
+       dpi = 300,     # Resolución en píxeles por pulgada
+       units = "in")  # Unidades de tamaño
+```
+
+### png
+
+```{r , eval=FALSE}
+png("graphs/mapa_latinoamerica_optionB.png")
+print(map_plot)
+dev.off()
+```
+:::
+:::
+
+## Mi primer mapa interactivo
+
+```{r}
+# Crear el mapa
+p_jaguar <- ggplot() +
+  # Fondo gris para todos los países de América Latina
+  geom_sf(data = latin_america, fill = "lightgrey", color = "white") +
+  
+  # Colorear los países del consorcio JAGUAR con interactividad
+  geom_sf_interactive(
+    data = filter(latin_america, name %in% JAGUAR_paises),
+    aes(fill = color, tooltip = name, data_id = name),
+    color = "white"
+  ) +
+  
+  scale_fill_identity() +  # Para usar directamente los colores definidos
+  coord_sf(crs = st_crs(3857)) +
+  theme_void() +
+  theme(legend.position = "none")
+p_jaguar
+
+# Mostrar como mapa interactivo
+girafe(ggobj = p_jaguar)
+```
+
+## Panel B. Población total por paises
+
+```{r}
+# Crear el boxplot interactivo con los datos de JAGUAR_gapminder
+box_plot <- JAGUAR_gapminder %>%
+  ggplot(aes(x = pop, y = country, fill = country, data_id = id)) +
+  # Agregar boxplots interactivos con ligero desplazamiento vertical
+  geom_boxplot_interactive(
+    position = position_nudge(y = 0.25),  # Desplaza los boxplots hacia abajo
+    width = 0.5 # Controla el ancho de las cajas
+  ) +
+  # Agregar marcas verticales tipo "barra" para valores individuales, también interactivos
+  geom_point_interactive(
+    aes(col = country, tooltip = id),                  # Color por país
+    position = position_nudge(y = -0.25),# Desplaza puntos hacia arriba
+    size = 8,                            # Tamaño de la marca
+    shape = '|',                         # Tipo de marcador vertical
+    alpha = 0.75                         # Transparencia
+  ) +
+  scale_fill_manual(values = paises_pal) +
+  scale_color_manual(values = paises_pal) +
+  # Etiquetas y título del gráfico
+  labs(
+    x = 'Población total (en años)',
+    y = element_blank(),
+    title = glue::glue('Distribución de la población')
+  ) +
+  # Tema minimalista y ajustes estéticos
+  theme_minimal(base_size = 12) +
+  theme(
+    text = element_text(
+      color = 'grey20'
+    ),
+    legend.position = 'none',
+    panel.grid.minor = element_blank(),
+    plot.title.position = 'plot'
+  )
+box_plot
+```
+
+### Volver interactivo
+
+```{r}
+girafe(
+  ggobj = box_plot) # Objeto ggplot a convertir en interactivo
+```
+
+Actualmente, nuestro gráfico de líneas se vuelve **naranja** cuando pasamos el ratón por encima de ellas. Todo lo demás permanece sin cambios. Cambiémoslo para que todas las líneas menos una se vuelvan transparentes.
+
+La forma de hacerlo es pasar una lista de opciones a **girafe()**. Esta lista contendrá `opts_hover()` y `opts_hover_inv()` para determinar el código CSS que debe aplicarse. Además, fijemos el tamaño de nuestra trama con `opts_sizing()`.
+
+```{r}
+# Convertir en gráfico interactivo
+girafe(
+  ggobj = box_plot,  # Gráfico generado con geom_*_interactive
+  options = list(
+    opts_hover(css = ''),   # Estilo CSS para el elemento bajo el cursor
+    opts_hover_inv(css = "opacity:0.1;"), # Estilo CSS para los demás elementos (baja opacidad)
+    opts_sizing(rescale = FALSE) # Mantiene el tamaño fijo del gráfico
+  ),
+  
+  height_svg = 6,  # Altura del gráfico en SVG
+  width_svg = 9    # Ancho del gráfico en SVG
+)
+```
+
+::: callout-note
+### Notas
+
+-   `line_chart` debe ser un objeto creado con `ggplot()` que use geoms interactivos como `geom_line_interactive()`.
+
+-   `opts_hover(css = '')`: puedes personalizar aquí el estilo al pasar el mouse sobre una línea (ej. cambiar color o grosor).
+
+-   `opts_hover_inv(css = 'opacity:0.1;')`: permite resaltar una línea al atenuar las otras.
+
+-   `height_svg` y `width_svg` definen el tamaño del gráfico exportado/interactivo.
+:::
+
+## Panel C. Esperanza de vida atraves del tiempo
+
+```{r}
+# Crear archivo de lineas sobre la esperanza de vida
+line_chart <- JAGUAR_gapminder %>%
+  ggplot(aes(x = year, y = lifeExp, col = country, data_id = id)) +
+  geom_line_interactive(linewidth = 2.5) +
+  geom_point_interactive(aes(tooltip = id), size = 4) +
+  theme_minimal(base_size = 12) +
+  labs(
+    x = element_blank(),
+    y = 'Esperanza de vida \n(en años)',
+    title = 'Esperanza de vida a lo largo del tiempo'
+  ) +
+  theme(
+    text = element_text(
+      color = 'grey20'
+    ),
+    legend.position = 'none',
+    panel.grid.minor = element_blank(),
+    plot.title.position = 'plot') +
+  scale_color_manual(values = paises_pal)
+
+line_chart
+```
+
+### Volver interactivo
+
+```{r}
+girafe(
+  ggobj = line_chart, # Objeto ggplot a convertir en interactivo
+  # Seleccionar el Estilo CSS para la línea sobre la que se pasa el cursor
+  options = list(
+    opts_hover(css = ''), ## CSS code of line we're hovering over
+     # Estilo CSS para las demás líneas que no están siendo enfocadas (reduce opacidad)
+    opts_hover_inv(css = "opacity:0.1;"), ## CSS code of all other lines
+    # Fija el tamaño del gráfico (no permite que cambie con el tamaño del contenedor)
+    opts_sizing(rescale = FALSE) ## Fixes sizes to dimensions below
+  ),
+  # Altura del gráfico en unidades SVG
+  height_svg = 6,
+  # Ancho del gráfico en unidades SVG
+  width_svg = 9
+)
+```
+
+## Unir Panel B y C
+
+```{r}
+interactive_plot <- girafe(
+  # Combina el boxplot y el gráfico de líneas en una sola visualización interactiva
+  ggobj = box_plot + plot_spacer() + line_chart + 
+    plot_layout(widths = c(0.45, 0.1, 0.45)),
+  # Opciones de interactividad para girafe
+  options = list(
+    opts_hover(css = ''),
+    opts_hover_inv(css = "opacity:0.1;"), 
+    opts_sizing(rescale = FALSE)
+  ),
+  # Dimensiones del gráfico en unidades SVG
+  height_svg = 6,
+  width_svg = 8
+)
+
+interactive_plot
+```
+
+## Unir Panel A, B y C
+
+```{r}
+# Layout con patchwork: mapa arriba, boxplot + line_chart abajo
+layout_total <- p_jaguar | (box_plot / line_chart) + plot_layout(widths = c(0.45, 0.1, 0.45)) 
+#+ plot_layout(heights = c(0.5, 0.5))  # mitad mapa, mitad box + línea
+
+# Convertir todo en visualización interactiva
+interactive_plot <- girafe(
+  ggobj = layout_total,
+  options = list(
+    opts_hover(css = ''),
+    opts_hover_inv(css = "opacity:0.1;"),
+    opts_sizing(rescale = FALSE)
+  ),
+  height_svg = 6,
+  width_svg = 8
+)
+
+interactive_plot
+```
+
+Guardar el plot interactivo
+
+```{r}
+htmltools::save_html(interactive_plot, "graphs/multiple-ggiraph-1.html")
+```
+
+## Referencias
+
+-   [Creating interactive visualizations with `{ggiraph}` (with or without Shiny)](https://albert-rapp.de/posts/ggplot2-tips/17_ggiraph/17_ggiraph.html)
+-   [More complex CSS](https://r-graph-gallery.com/414-map-multiple-charts-in-ggiraph.html)
+-   [ggiraph manual](https://www.ardata.fr/ggiraph-book/customize.html)
